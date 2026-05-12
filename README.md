@@ -30,4 +30,4 @@ src/components/: Navbar, Hero, About, WhatWeDo, Events, Projects, Team, Stats, G
 - Dr. Deena Nath Gupta — Faculty Mentor
 - Mr. Durgesh Tiwari — Technical Mentor
 
-(c) 2024 Echo Engineers, SOET, MUIT Noida
+(c) 2026Echo Engineers, SOET, MUIT Noida
