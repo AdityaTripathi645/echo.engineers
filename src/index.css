@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white text-slate-800 antialiased overflow-x-hidden; font-family: 'DM Sans', sans-serif; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Syne', sans-serif; font-weight: 700; }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 40%, #8b5cf6 100%);
+  }
+  .glass {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.9);
+  }
+  .section-padding { @apply py-20 px-4 md:px-8 lg:px-16 xl:px-24; }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white transition-all duration-300 cursor-pointer;
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    box-shadow: 0 4px 24px rgba(14,165,233,0.3);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(14,165,233,0.4); }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 border-2 cursor-pointer;
+    border-color: #0ea5e9; color: #0ea5e9; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { background: linear-gradient(135deg, #0ea5e9, #06b6d4); @apply text-white; transform: translateY(-2px); }
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-4;
+    background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(6,182,212,0.1));
+    color: #0284c7; border: 1px solid rgba(14,165,233,0.2);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .card-hover { @apply transition-all duration-300 hover:-translate-y-2; }
+}
+
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  background: linear-gradient(90deg, #0ea5e9, #06b6d4, #8b5cf6);
+  z-index: 9999; transition: width 0.1s ease;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#0ea5e9, #8b5cf6); border-radius: 3px; }
+
+.mesh-bg {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(at 20% 10%, rgba(14,165,233,0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(139,92,246,0.07) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(6,182,212,0.06) 0px, transparent 50%);
+}
+
+.grid-texture {
+  background-image: 
+    linear-gradient(rgba(14,165,233,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,165,233,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.spinner {
+  width: 48px; height: 48px;
+  border: 4px solid rgba(14,165,233,0.15);
+  border-top-color: #0ea5e9; border-radius: 50%;
+  animation: spinAnim 0.8s linear infinite;
+}
+
+@keyframes spinAnim { to { transform: rotate(360deg); } }
+
+@keyframes floatAnim {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+.animate-float { animation: floatAnim 6s ease-in-out infinite; }
+.animate-float-slow { animation: floatAnim 9s ease-in-out infinite; }
