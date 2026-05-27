@@ -24,7 +24,8 @@ const teamMembers = [
     role: "Core Team Member",
     bio: "Open source contributor and competitive programmer driving technical excellence and knowledge sharing within the community.",
     linkedin: "https://www.linkedin.com/in/aryan-gupta-7816942ba/",
-    img: "https://media.licdn.com/dms/image/v2/D5635AQEVPcSH7f5fuw/profile-framedphoto-shrink_800_800/B56ZUfJdSVHQAg-/0/1739984328168?e=1779123600&v=beta&t=qjdz3zMDsB1BnfjSfwxTm3-jMGrce1l58m7CuvtNZ6k",
+    img: "https://media.licdn.com/dms/image/v2/D5635AQEVPcSH7f5fuw/profile-framedphoto-shrink_200_200/B56ZUfJdSVHQAY-/0/1739984328164?e=1780502400&v=beta&t=mvgQdvz9DR-fK1YqvM_1N78A30HrESoUSxG4feRtQTg",
+    // "https://media.licdn.com/dms/image/v2/D5635AQEVPcSH7f5fuw/profile-framedphoto-shrink_800_800/B56ZUfJdSVHQAg-/0/1739984328168?e=1779123600&v=beta&t=qjdz3zMDsB1BnfjSfwxTm3-jMGrce1l58m7CuvtNZ6k",
     gradient: "from-teal-400 to-cyan-500",
   },
 ];

@@ -16,11 +16,15 @@ const quickLinks = [
 ];
 
 const socials = [
-  { icon: FaLinkedin, href: "#", color: "#0077b5" },
-  { icon: FaGithub, href: "#", color: "#334155" },
-  { icon: FaInstagram, href: "#", color: "#e1306c" },
-  { icon: FaXTwitter, href: "#", color: "#1a1a1a" },
-  { icon: FaDiscord, href: "#", color: "#5865f2" },
+  {
+    icon: FaLinkedin,
+    href: " https://linkedin.com/company/echo-engineer-s",
+    color: "#0077b5",
+  },
+  // { icon: FaGithub, href: "#", color: "#334155" },
+  // { icon: FaInstagram, href: "#", color: "#e1306c" },
+  // { icon: FaXTwitter, href: "#", color: "#1a1a1a" },
+  // { icon: FaDiscord, href: "#", color: "#5865f2" },
 ];
 
 export default function Footer() {
@@ -133,7 +137,7 @@ export default function Footer() {
             </h4>
             <div className="space-y-2 text-sm text-slate-400">
               <p>📍 Noida</p>
-              <p>📧 echoengineers@muit.edu.in</p>
+              <p>📧 echoengineers.support@gmail.com</p>
               <p className="mt-4 text-xs text-slate-500">
                 Open to all students — regardless of branch or year.
               </p>

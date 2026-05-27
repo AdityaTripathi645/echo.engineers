@@ -5,11 +5,16 @@ import { FaLinkedin, FaGithub, FaInstagram, FaDiscord } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const socials = [
-  { icon: FaLinkedin, href: "#", label: "LinkedIn", color: "#0077b5" },
-  { icon: FaGithub, href: "#", label: "GitHub", color: "#1e293b" },
-  { icon: FaInstagram, href: "#", label: "Instagram", color: "#e1306c" },
-  { icon: FaXTwitter, href: "#", label: "X / Twitter", color: "#1a1a1a" },
-  { icon: FaDiscord, href: "#", label: "Discord", color: "#5865f2" },
+  {
+    icon: FaLinkedin,
+    href: " https://linkedin.com/company/echo-engineer-s",
+    label: "LinkedIn",
+    color: "#0077b5",
+  },
+  // { icon: FaGithub, href: "#", label: "GitHub", color: "#1e293b" },
+  // { icon: FaInstagram, href: "#", label: "Instagram", color: "#e1306c" },
+  // { icon: FaXTwitter, href: "#", label: "X / Twitter", color: "#1a1a1a" },
+  // { icon: FaDiscord, href: "#", label: "Discord", color: "#5865f2" },
 ];
 
 export default function Contact() {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaDiscord, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { HiArrowRight, HiCheckCircle } from "react-icons/hi";
 
 const interests = [
@@ -81,21 +81,21 @@ export default function JoinCommunity() {
               ))}
             </div>
 
-            {/* Discord & WhatsApp */}
+            {/*  & WhatsApp */}
             <div className="flex flex-wrap gap-4">
               <motion.a
                 whileHover={{ scale: 1.04 }}
-                href="#"
+                href=" https://linkedin.com/company/echo-engineer-s"
                 className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-white transition-all"
                 style={{
                   background: "linear-gradient(135deg, #5865f2, #7289da)",
                 }}
               >
-                <FaDiscord className="text-xl" /> Join Discord
+                <FaLinkedin className="text-xl" /> Join LinkedIn
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.04 }}
-                href="#"
+                href="https://chat.whatsapp.com/LlwGAtyg1lL3dHhG551iS8"
                 className="flex items-center gap-3 px-6 py-3 rounded-full font-semibold text-white transition-all"
                 style={{
                   background: "linear-gradient(135deg, #25d366, #128c7e)",

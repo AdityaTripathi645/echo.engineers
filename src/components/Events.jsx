@@ -1,23 +1,27 @@
 import { motion } from "framer-motion";
 import { HiCalendar, HiArrowRight } from "react-icons/hi";
-import { RiBrainLine, RiMagicLine, RiCodeSSlashFill, RiGitMergeLine } from "react-icons/ri";
+import {
+  RiBrainLine,
+  RiMagicLine,
+  RiCodeSSlashFill,
+  RiGitMergeLine,
+} from "react-icons/ri";
 
 const events = [
   {
     icon: RiBrainLine,
-    title: "AI Vibeathon 2026",
-    date: "March 15–16, 2026",
-    category: "Hackathon",
-    desc: "A 24-hour AI hackathon where teams build real AI products using LLMs, computer vision, and generative tools. Open to all students.",
-    color: "from-sky-400 to-cyan-400",
+    title: "AI VibeQuiz 2026",
+    date: "May 30, 2026",
+    category: "Quize",
+    desc: "A fun and fast-paced quiz night testing your knowledge of AI concepts, history, and pop culture. Teams compete for glory and prizes.",
     bg: "from-sky-50 to-cyan-50",
-    tag: "Upcoming",
+    tag: "continued",
     tagColor: "bg-green-100 text-green-700",
   },
   {
     icon: RiMagicLine,
     title: "Prompt Engineering Bootcamp",
-    date: "April 5, 2026",
+    date: "July, 2026",
     category: "Workshop",
     desc: "Master advanced prompting techniques for GPT-4, Claude, and Gemini. Build AI-powered apps with zero ML background.",
     color: "from-violet-400 to-purple-500",
@@ -28,23 +32,23 @@ const events = [
   {
     icon: RiCodeSSlashFill,
     title: "Web Dev Sprint",
-    date: "February 20, 2026",
+    date: "June, 2026",
     category: "Sprint",
     desc: "A fast-paced full-stack sprint — React, Node.js, MongoDB. Build and ship a production-ready project in one weekend.",
     color: "from-indigo-400 to-blue-500",
     bg: "from-indigo-50 to-blue-50",
-    tag: "Completed",
+    tag: "Upcoming",
     tagColor: "bg-slate-100 text-slate-600",
   },
   {
     icon: RiGitMergeLine,
     title: "Open Source Hack Night",
-    date: "January 30, 2026",
+    date: "August, 2026",
     category: "Hack Night",
     desc: "A late-night coding session dedicated to open source contributions. First PRs, bug fixes, and documentation — all welcome.",
     color: "from-teal-400 to-emerald-500",
     bg: "from-teal-50 to-emerald-50",
-    tag: "Completed",
+    tag: "Upcoming",
     tagColor: "bg-slate-100 text-slate-600",
   },
 ];
@@ -64,7 +68,8 @@ export default function Events() {
             Where the <span className="gradient-text">Action Happens</span>
           </h2>
           <p className="mt-4 text-slate-500 max-w-xl mx-auto">
-            Hackathons, workshops, bootcamps — events designed to challenge, teach, and inspire.
+            Hackathons, workshops, bootcamps — events designed to challenge,
+            teach, and inspire.
           </p>
         </motion.div>
 
@@ -80,7 +85,9 @@ export default function Events() {
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col"
             >
               {/* Top banner */}
-              <div className={`bg-gradient-to-br ${ev.bg} p-6 flex items-center justify-center`}>
+              <div
+                className={`bg-gradient-to-br ${ev.bg} p-6 flex items-center justify-center`}
+              >
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl bg-gradient-to-br ${ev.color} shadow-lg`}
                 >
@@ -93,23 +100,31 @@ export default function Events() {
                   <span className="text-xs font-semibold text-sky-600 bg-sky-50 px-2 py-1 rounded-full">
                     {ev.category}
                   </span>
-                  <span className={`text-xs font-semibold px-2 py-1 rounded-full ${ev.tagColor}`}>
+                  <span
+                    className={`text-xs font-semibold px-2 py-1 rounded-full ${ev.tagColor}`}
+                  >
                     {ev.tag}
                   </span>
                 </div>
 
-                <h3 className="font-bold text-slate-800 mb-2 text-base">{ev.title}</h3>
+                <h3 className="font-bold text-slate-800 mb-2 text-base">
+                  {ev.title}
+                </h3>
 
                 <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
                   <HiCalendar />
                   <span>{ev.date}</span>
                 </div>
 
-                <p className="text-slate-500 text-sm leading-relaxed flex-1 mb-4">{ev.desc}</p>
+                <p className="text-slate-500 text-sm leading-relaxed flex-1 mb-4">
+                  {ev.desc}
+                </p>
 
                 <button
                   className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:opacity-90 hover:scale-[1.02]"
-                  style={{ background: `linear-gradient(135deg, #0ea5e9, #06b6d4)` }}
+                  style={{
+                    background: `linear-gradient(135deg, #0ea5e9, #06b6d4)`,
+                  }}
                 >
                   {ev.tag === "Upcoming" ? "Register Now" : "View Details"}
                   <HiArrowRight className="text-sm" />

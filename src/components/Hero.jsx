@@ -1,3 +1,4 @@
+import logoEcho from "../assets/logoecho.png";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiUsers } from "react-icons/hi";
 import { RiRocketLine, RiCodeSSlashFill, RiBrainLine } from "react-icons/ri";
@@ -157,14 +158,40 @@ export default function Hero() {
                 }}
               >
                 {/* Logo large */}
-                <div
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 12,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="relative"
+                >
+                  {/* Glow Ring */}
+                  <div
+                    className="absolute inset-0 rounded-full blur-xl opacity-40"
+                    style={{
+                      background: "linear-gradient(135deg, #0ea5e9, #8b5cf6)",
+                      transform: "scale(1.15)",
+                    }}
+                  />
+                  {/* Logo */}
+                  <div className="relative w-24 h-24 rounded-full p-[3px] bg-gradient-to-r from-sky-500 via-cyan-400 to-purple-500 shadow-2xl">
+                    <img
+                      src={logoEcho}
+                      alt="Echo Engineers Logo"
+                      className="w-full h-full rounded-full object-cover bg-white"
+                    />
+                  </div>
+                </motion.div>
+                {/* <div
                   className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{
                     background: "linear-gradient(135deg, #0ea5e9, #8b5cf6)",
                   }}
                 >
                   <RiCodeSSlashFill className="text-white text-4xl" />
-                </div>
+                </div> */}
                 <div className="text-center">
                   <p
                     className="font-bold text-2xl text-slate-800"
