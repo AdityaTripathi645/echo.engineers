@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -13,6 +14,8 @@ import Testimonials from "./components/Testimonials";
 import JoinCommunity from "./components/JoinCommunity";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import CertificatePortal from "./pages/CertificatePortal";
+import CertificateVerify from "./pages/CertificateVerify";
 import { ScrollProgress, BackToTop, Loader } from "./components/Utilities";
 
 export default function App() {
@@ -24,31 +27,47 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <ScrollProgress />
-      <AnimatePresence>
-        {loading && <Loader key="loader" />}
-      </AnimatePresence>
+      <AnimatePresence>{loading && <Loader key="loader" />}</AnimatePresence>
       {!loading && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Navbar />
           <main>
-            <Hero />
-            <About />
-            <WhatWeDo />
-            <Events />
-            <Projects />
-            <Stats />
-            <Team />
-            <Gallery />
-            <Testimonials />
-            <JoinCommunity />
-            <Contact />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Hero />
+                    <About />
+                    <WhatWeDo />
+                    <Events />
+                    <Projects />
+                    <Stats />
+                    <Team />
+                    <Gallery />
+                    <Testimonials />
+                    <JoinCommunity />
+                    <Contact />
+                  </>
+                }
+              />
+              <Route path="/certificates" element={<CertificatePortal />} />
+              <Route
+                path="/certificate/:credentialId"
+                element={<CertificateVerify />}
+              />
+            </Routes>
           </main>
           <Footer />
           <BackToTop />
         </motion.div>
       )}
-    </>
+    </BrowserRouter>
   );
 }

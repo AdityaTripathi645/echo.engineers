@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { RiCodeSSlashFill } from "react-icons/ri";
@@ -13,11 +14,13 @@ const links = [
   { label: "Gallery", href: "#gallery" },
   { label: "Join Us", href: "#join" },
   { label: "Contact", href: "#contact" },
+  { label: "Certificates", href: "/certificates" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,8 +30,13 @@ export default function Navbar() {
 
   const handleNavClick = (href) => {
     setMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (href.startsWith("#")) {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+
+    navigate(href);
   };
 
   return (
