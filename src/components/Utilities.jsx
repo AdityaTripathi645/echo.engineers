@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowUp } from "react-icons/hi";
+import logoEcho from "../assets/logoecho.png";
 
 export function ScrollProgress() {
   useEffect(() => {
     const bar = document.getElementById("scroll-progress");
     const onScroll = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       if (bar) bar.style.width = `${pct}%`;
     };
@@ -51,24 +53,47 @@ export function Loader() {
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
       transition={{ delay: 1.2, duration: 0.5 }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white pointer-events-none"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-white pointer-events-none"
     >
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center gap-4"
+        className="flex items-center gap-6"
       >
-        <div
-          className="w-16 h-16 rounded-2xl flex items-center justify-center text-white text-3xl shadow-xl"
-          style={{ background: "linear-gradient(135deg, #0ea5e9, #8b5cf6)" }}
+        <motion.div
+          initial={{ rotate: -180, x: 20, opacity: 0 }}
+          animate={{ rotate: 0, x: -16, opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="w-24 h-24 rounded-3xl overflow-hidden shadow-2xl"
         >
-          ⚡
+          <img
+            src={logoEcho}
+            alt="Echo Engineers Logo"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        <div className="flex flex-col justify-center h-24 gap-1">
+          <motion.p
+            initial={{ y: -16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.35 }}
+            className="font-black text-2xl uppercase tracking-[0.3em] gradient-text"
+            style={{ fontFamily: "Syne, sans-serif" }}
+          >
+            Echo
+          </motion.p>
+          <motion.p
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.35, duration: 0.35 }}
+            className="font-black text-2xl uppercase tracking-[0.3em] gradient-text"
+            style={{ fontFamily: "Syne, sans-serif" }}
+          >
+            Engineers
+          </motion.p>
         </div>
-        <p className="font-bold text-xl gradient-text" style={{ fontFamily: "Syne, sans-serif" }}>
-          Echo Engineers
-        </p>
-        <div className="spinner mt-2" />
       </motion.div>
     </motion.div>
   );

@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import QRCode from "qrcode";
 import Papa from "papaparse";
 
-const BASE_URL = "https://echoengineers.vercel.app";
+const BASE_URL = "https://echo-engineers.vercel.app";
 
 function generateCredentialId(event, index) {
   const prefixMap = {

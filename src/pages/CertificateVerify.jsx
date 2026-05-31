@@ -58,7 +58,7 @@ export default function CertificateVerify() {
     })();
   }, [credentialId]);
 
-  const credUrl = `https://echoengineers.vercel.app/certificate/${credentialId}`;
+  const credUrl = `https://echo-engineers.vercel.app/certificate/${credentialId}`;
 
   if (cert === undefined) {
     return (

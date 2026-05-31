@@ -21,7 +21,7 @@ function CopyButton({ text, label }) {
 export default function CertificateResult({ certificate }) {
   const [showModal, setShowModal] = useState(false);
 
-  const baseUrl = "https://echoengineers.vercel.app";
+  const baseUrl = "https://echo-engineers.vercel.app";
 
   if (certificate === null) {
     return (
