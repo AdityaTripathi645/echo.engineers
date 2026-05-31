@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import teamImg from "../assets/teamimg.jpeg";
 import {
   RiLightbulbLine,
   RiTeamLine,
   RiBookOpenLine,
   RiLeafLine,
 } from "react-icons/ri";
+import heroImg from "../assets/hero.png";
 
 const cards = [
   {
@@ -114,78 +116,11 @@ export default function About() {
                 }}
               >
                 {/* SVG Illustration */}
-                <svg
-                  viewBox="0 0 400 200"
-                  className="w-full h-full"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="80"
-                    cy="100"
-                    r="40"
-                    fill="rgba(14,165,233,0.15)"
-                  />
-                  <circle
-                    cx="200"
-                    cy="80"
-                    r="55"
-                    fill="rgba(139,92,246,0.12)"
-                  />
-                  <circle
-                    cx="320"
-                    cy="100"
-                    r="40"
-                    fill="rgba(6,182,212,0.15)"
-                  />
-                  {/* People */}
-                  {[60, 180, 310].map((x, i) => (
-                    <g key={i} transform={`translate(${x}, 65)`}>
-                      <circle
-                        cx="20"
-                        cy="0"
-                        r="14"
-                        fill={["#0ea5e9", "#8b5cf6", "#06b6d4"][i]}
-                        opacity="0.9"
-                      />
-                      <rect
-                        x="4"
-                        y="18"
-                        width="32"
-                        height="36"
-                        rx="12"
-                        fill={["#0ea5e9", "#8b5cf6", "#06b6d4"][i]}
-                        opacity="0.7"
-                      />
-                    </g>
-                  ))}
-                  {/* Code brackets */}
-                  <text
-                    x="155"
-                    y="145"
-                    fontSize="28"
-                    fill="#0ea5e9"
-                    opacity="0.6"
-                    fontFamily="monospace"
-                  >
-                    {"</>"}
-                  </text>
-                  {/* Stars */}
-                  {[
-                    [30, 30],
-                    [370, 40],
-                    [190, 20],
-                    [350, 160],
-                  ].map(([cx, cy], i) => (
-                    <circle
-                      key={i}
-                      cx={cx}
-                      cy={cy}
-                      r="3"
-                      fill={["#0ea5e9", "#8b5cf6", "#06b6d4", "#6366f1"][i]}
-                      opacity="0.6"
-                    />
-                  ))}
-                </svg>
+                <img
+                  src={teamImg}
+                  alt="Echo Engineers Team"
+                  className="w-full h-full object-cover"
+                />
               </div>
               {/* Floating tag */}
               <motion.div

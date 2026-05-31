@@ -31,8 +31,16 @@ export default function Navbar() {
   const handleNavClick = (href) => {
     setMenuOpen(false);
     if (href.startsWith("#")) {
-      const el = document.querySelector(href);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      if (window.location.pathname !== "/") {
+        navigate(`/${href}`);
+        setTimeout(() => {
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
       return;
     }
 

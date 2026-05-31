@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { FiLinkedin } from "react-icons/fi";
 import { RiCodeSSlashFill } from "react-icons/ri";
+import adityaImg from "../assets/Aditya.png";
+import amanImg from "../assets/aman.jpeg";
+import aryanImg from "../assets/aryan.jpeg";
+import mentorImg1 from "../assets/deenanath.png";
+import mentorImg2 from "../assets/durgesh.png";
 
 const teamMembers = [
   {
@@ -8,7 +13,7 @@ const teamMembers = [
     role: "Founder & Community Lead",
     bio: "Visionary engineer and community builder passionate about AI and empowering student developers.",
     linkedin: "https://www.linkedin.com/in/adityatripathi007/",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQHtE-rEECgIjA/profile-displayphoto-crop_800_800/B56Z4LGhEeJ0AI-/0/1778302725025?e=1779926400&v=beta&t=IyuW_6H7y26P6rOkdzP93ktOto0KCWCyaVSPX-uo5vE",
+    img: adityaImg,
     gradient: "from-sky-400 to-cyan-500",
   },
   {
@@ -16,7 +21,7 @@ const teamMembers = [
     role: "Core Team Member",
     bio: "Full-stack developer and hackathon enthusiast who loves building products that make a real difference in people's lives.",
     linkedin: "https://www.linkedin.com/in/aman-chaudhary-888237325/",
-    img: "https://media.licdn.com/dms/image/v2/D4D03AQFrb-H89_hqmQ/profile-displayphoto-shrink_800_800/B4DZUfPFbYHAAc-/0/1739985803603?e=1779926400&v=beta&t=IJz6CP9em2_tnVrtLmfENO-RSdEIaLInY7w_jchILC4",
+    img: amanImg,
     gradient: "from-violet-400 to-purple-500",
   },
   {
@@ -24,7 +29,7 @@ const teamMembers = [
     role: "Core Team Member",
     bio: "Open source contributor and competitive programmer driving technical excellence and knowledge sharing within the community.",
     linkedin: "https://www.linkedin.com/in/aryan-gupta-7816942ba/",
-    img: "https://media.licdn.com/dms/image/v2/D5635AQEVPcSH7f5fuw/profile-framedphoto-shrink_200_200/B56ZUfJdSVHQAY-/0/1739984328164?e=1780502400&v=beta&t=mvgQdvz9DR-fK1YqvM_1N78A30HrESoUSxG4feRtQTg",
+    img: aryanImg,
     // "https://media.licdn.com/dms/image/v2/D5635AQEVPcSH7f5fuw/profile-framedphoto-shrink_800_800/B56ZUfJdSVHQAg-/0/1739984328168?e=1779123600&v=beta&t=qjdz3zMDsB1BnfjSfwxTm3-jMGrce1l58m7CuvtNZ6k",
     gradient: "from-teal-400 to-cyan-500",
   },
@@ -36,7 +41,7 @@ const mentors = [
     role: "Faculty Mentor",
     bio: "Experienced academic and researcher guiding Echo Engineers with deep expertise in computer science and engineering education.",
     linkedin: "https://www.linkedin.com/in/dr-deena-nath-gupta-175712178/",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQF843Ib9cc1fA/profile-displayphoto-crop_800_800/B56ZxL7l6.HEAI-/0/1770800452424?e=1779926400&v=beta&t=tELAVl_LpM2KpkHPWWmPPtQP1tWbnLrgJNbx3nj0kZo",
+    img: mentorImg1,
     gradient: "from-blue-500 to-indigo-500",
   },
   {
@@ -44,7 +49,7 @@ const mentors = [
     role: "Technical Mentor",
     bio: "Industry professional and technology leader mentoring students on real-world development, career growth, and startup thinking.",
     linkedin: "https://www.linkedin.com/in/iamdurgesh/",
-    img: "https://media.licdn.com/dms/image/v2/D5603AQGl04IxEQX9Iw/profile-displayphoto-crop_800_800/B56Z1CkjSYKsAI-/0/1774938373665?e=1779926400&v=beta&t=C6tVTj9lBWJH_dfbUNQDYt6vQsug17kwlu16_Vpjn5Y",
+    img: mentorImg2,
     gradient: "from-indigo-400 to-violet-500",
   },
 ];

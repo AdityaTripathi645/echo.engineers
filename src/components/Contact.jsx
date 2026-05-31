@@ -3,6 +3,29 @@ import { motion } from "framer-motion";
 import { HiMail, HiLocationMarker, HiArrowRight } from "react-icons/hi";
 import { FaLinkedin, FaGithub, FaInstagram, FaDiscord } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID =
+  import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID =
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY =
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+const EMAIL_TO = "echoengineers.support@gmail.com";
+const CONTACT_SHEET_URL =
+  import.meta.env.VITE_CONTACT_SHEET_URL ||
+  "https://script.google.com/macros/s/AKfycbzU1b_Wdg4CdXs_1j-2ws1hw8YVV-Pr2-pXvLQr7nz04JMV5wzsajdUTq6NhJCjQhJ5/exec";
+
+async function postToSheet(url, payload) {
+  const res = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    throw new Error(`Sheet request failed: ${res.status}`);
+  }
+  return res.json().catch(() => ({ success: true }));
+}
 
 const socials = [
   {
@@ -20,10 +43,72 @@ const socials = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.name && form.email && form.message) setSent(true);
+    setError("");
+    if (!form.name || !form.email || !form.message) {
+      setError("Please provide your name, email and message.");
+      return;
+    }
+
+    const subject = "Contact Form Message - Echo Engineers";
+    const body = `Name: ${form.name}\nEmail: ${form.email}\nMessage:\n${form.message}`;
+    const templateParams = {
+      to_email: EMAIL_TO,
+      from_name: form.name,
+      from_email: form.email,
+      message: form.message,
+      subject,
+      body,
+    };
+
+    setLoading(true);
+    try {
+      let sheetSaved = false;
+      let emailSent = false;
+
+      if (CONTACT_SHEET_URL) {
+        await postToSheet(CONTACT_SHEET_URL, {
+          type: "contact",
+          timestamp: new Date().toISOString(),
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        });
+        sheetSaved = true;
+      }
+
+      if (
+        EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" &&
+        EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID" &&
+        EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY"
+      ) {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY,
+        );
+        emailSent = true;
+      }
+
+      if (!sheetSaved && !emailSent) {
+        window.location.href = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(body)}`;
+      }
+      setSent(true);
+    } catch (err) {
+      console.error(err);
+      setError(
+        "Unable to send your message. Please try again or email us directly.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -180,10 +265,14 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="btn-primary w-full justify-center"
+                    disabled={loading}
+                    className="btn-primary w-full justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message <HiArrowRight />
+                    {loading ? "Sending…" : "Send Message"} <HiArrowRight />
                   </button>
+                  {error && (
+                    <p className="text-sm text-red-600 mt-2">{error}</p>
+                  )}
                 </form>
               )}
             </div>

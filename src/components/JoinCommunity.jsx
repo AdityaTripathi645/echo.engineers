@@ -2,6 +2,29 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { HiArrowRight, HiCheckCircle } from "react-icons/hi";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID =
+  import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID =
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY =
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+const EMAIL_TO = "echoengineers.support@gmail.com";
+const JOIN_SHEET_URL =
+  import.meta.env.VITE_JOIN_SHEET_URL ||
+  "https://script.google.com/macros/s/AKfycbzU1b_Wdg4CdXs_1j-2ws1hw8YVV-Pr2-pXvLQr7nz04JMV5wzsajdUTq6NhJCjQhJ5/exec";
+
+async function postToSheet(url, payload) {
+  const res = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    throw new Error(`Sheet request failed: ${res.status}`);
+  }
+  return res.json().catch(() => ({ success: true }));
+}
 
 const interests = [
   "AI & ML",
@@ -23,6 +46,8 @@ export default function JoinCommunity() {
     interests: [],
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleInterest = (interest) => {
     setForm((prev) => ({
@@ -33,9 +58,74 @@ export default function JoinCommunity() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.name && form.email) setSubmitted(true);
+    setError("");
+    if (!form.name || !form.email) {
+      setError("Please enter your name and email.");
+      return;
+    }
+
+    const subject = "New Join Request - Echo Engineers";
+    const body = `Name: ${form.name}\nEmail: ${form.email}\nCollege / Branch / Year: ${form.college}\nSkills: ${form.skills}\nInterests: ${form.interests.join(", ") || "None"}`;
+    const templateParams = {
+      to_email: EMAIL_TO,
+      from_name: form.name,
+      from_email: form.email,
+      college: form.college,
+      skills: form.skills,
+      interests: form.interests.join(", "),
+      message: body,
+      subject,
+    };
+
+    setLoading(true);
+    try {
+      let sheetSaved = false;
+      let emailSent = false;
+
+      if (JOIN_SHEET_URL) {
+        await postToSheet(JOIN_SHEET_URL, {
+          type: "join",
+          timestamp: new Date().toISOString(),
+          name: form.name,
+          email: form.email,
+          college: form.college,
+          skills: form.skills,
+          interests: form.interests,
+        });
+        sheetSaved = true;
+      }
+
+      if (
+        EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" &&
+        EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID" &&
+        EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY"
+      ) {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY,
+        );
+        emailSent = true;
+      }
+
+      if (!sheetSaved && !emailSent) {
+        window.location.href = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(body)}`;
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setError(
+        "Unable to send your request. Please try again or email us directly.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -223,10 +313,14 @@ export default function JoinCommunity() {
 
                   <button
                     type="submit"
-                    className="btn-primary w-full justify-center"
+                    disabled={loading}
+                    className="btn-primary w-full justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Join Community <HiArrowRight />
+                    {loading ? "Sending…" : "Join Community"} <HiArrowRight />
                   </button>
+                  {error && (
+                    <p className="text-sm text-red-600 mt-2">{error}</p>
+                  )}
                 </form>
               )}
             </div>
