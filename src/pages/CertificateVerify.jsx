@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import CertificatePreviewModal from "../components/CertificatePreviewModal";
+import participantsCSV from "../assets/participants.csv?raw";
 
 const SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/gviz/tq?tqx=out:csv&sheet=Sheet1";
@@ -24,7 +25,24 @@ const DEMO_DATA = [
   },
 ];
 
+function parseCsv(rawCsv) {
+  const rows = rawCsv.trim().split("\n");
+  const headers = rows[0].split(",").map((h) => h.trim());
+  return rows.slice(1).map((row) => {
+    const vals = row.split(",").map((v) => v.trim());
+    const obj = {};
+    headers.forEach((h, i) => {
+      obj[h] = vals[i] || "";
+    });
+    return obj;
+  });
+}
+
 async function fetchSheetData() {
+  if (SHEET_CSV_URL.includes("YOUR_SHEET_ID")) {
+    throw new Error("Sheet URL not configured");
+  }
+
   const res = await fetch(SHEET_CSV_URL);
   const text = await res.text();
   const rows = text.trim().split("\n");
@@ -47,9 +65,17 @@ export default function CertificateVerify() {
   useEffect(() => {
     (async () => {
       let data = DEMO_DATA;
+
       try {
-        data = await fetchSheetData();
+        data = parseCsv(participantsCSV);
       } catch {}
+
+      if (!SHEET_CSV_URL.includes("YOUR_SHEET_ID")) {
+        try {
+          data = await fetchSheetData();
+        } catch {}
+      }
+
       const found = data.find(
         (r) =>
           r["Credential ID"]?.toLowerCase() === credentialId?.toLowerCase(),
