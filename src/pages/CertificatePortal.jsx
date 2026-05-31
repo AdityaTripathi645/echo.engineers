@@ -33,7 +33,7 @@ export default function CertificatePortal() {
       </div>
 
       {/* Tab Navigation */}
-      <div className="max-w-5xl mx-auto px-4 -mt-5">
+      <div className="max-w-4xl mx-auto px-4 -mt-5">
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden">
           <div className="flex border-b border-slate-100 dark:border-slate-700">
             {[
@@ -91,7 +91,7 @@ export default function CertificatePortal() {
 
       {/* Result */}
       {searched && (
-        <div className="max-w-5xl mx-auto px-4 mt-6 pb-16">
+        <div className="max-w-4xl mx-auto px-4 mt-6 pb-16">
           <CertificateResult certificate={result} />
         </div>
       )}

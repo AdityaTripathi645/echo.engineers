@@ -196,13 +196,13 @@ export default function CertificateSearch({ mode, onResult, onReset }) {
         </button>
       </div>
 
-      <p className="text-xs text-center text-slate-400">
+      {/* <p className="text-xs text-center text-slate-400">
         Data is fetched from a Google Sheet. Configure{" "}
         <code className="bg-slate-100 dark:bg-slate-700 px-1 rounded">
           SHEET_CSV_URL
         </code>{" "}
         in CertificateSearch.jsx.
-      </p>
+      </p> */}
     </div>
   );
 }
