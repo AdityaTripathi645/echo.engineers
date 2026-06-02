@@ -39,10 +39,10 @@ export default function CertificateResult({ certificate }) {
         <p className="mt-4 text-xs text-slate-400">
           Contact us at{" "}
           <a
-            href="mailto:echoengineers@muit.in"
+            href="mailto:echoengineers.support@gmail.com"
             className="text-[#0d3b6e] dark:text-teal-400 underline"
           >
-            echoengineers@muit.in
+            echoengineers.support@gmail.com
           </a>{" "}
           if you believe this is an error.
         </p>
